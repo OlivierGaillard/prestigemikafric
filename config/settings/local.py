@@ -65,3 +65,7 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # ------------------------------------------------------------------------------
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['*'])
 
+INSTALLED_APPS = (
+    'photologue',
+    'sortedm2m'
+)
