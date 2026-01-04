@@ -45,7 +45,11 @@ THIRD_PARTY_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'imprint',
+    'home',
+    'atelier',
+    'boutique',
+    'vitrine',
+    'polls.apps.PollsConfig'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

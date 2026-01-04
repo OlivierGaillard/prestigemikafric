@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+    <h1>Bienvenue dans notre boutique-atelier !</h1>
+<p>
+    J'offre les services suivant:
+    <ul>
+        <li>Retouches</li>
+        <li>Confection de tenues africaines traditionnelles sur mesures</li>
+    </ul>
+</p>
+    {# <a href="{% url 'atelier:index' %}">Accéder à l'atelier</a> #}
+    <img src="{% static 'home/images/mika_atelier.jpg' %}" alt="Bannière d'accueil" width="600">
+{% endblock %}

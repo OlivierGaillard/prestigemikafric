@@ -7,10 +7,15 @@ from django.views import defaults as default_views
 
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html')),
+    # path('', TemplateView.as_view(template_name='index.html')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('user/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
+    path("", include("home.urls")),
+    path("polls/", include("polls.urls")),
+    path("atelier/", include("atelier.urls")),
+    path("boutique/", include("boutique.urls")),
+    path("vitrine/", include("vitrine.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
@@ -29,9 +34,4 @@ if settings.DEBUG:
             path('__debug__/', include(debug_toolbar.urls)),
         ] + urlpatterns
 
-if 'imprint' in settings.INSTALLED_APPS:
-    from imprint.views import AboutView
-    urlpatterns += [
-        path('about/', AboutView.as_view(), name='about'),
-    ]
 
