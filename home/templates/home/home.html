@@ -1,8 +1,9 @@
-{% extends "base.html" %}
+{% extends "home/base.html" %}
 {% load static %}
 {% block title %}Accueil{% endblock %}
 
 {% block content %}
+<div class="container mx-4">
     <h1>Bienvenue dans notre boutique-atelier !</h1>
 <p>
     J'offre les services suivant:
@@ -11,6 +12,9 @@
         <li>Confection de tenues africaines traditionnelles sur mesures</li>
     </ul>
 </p>
-    {# <a href="{% url 'atelier:index' %}">Accéder à l'atelier</a> #}
+<p>    {# <a href="{% url 'atelier:index' %}">Accéder à l'atelier</a>a #}
     <img src="{% static 'home/images/mika_atelier.jpg' %}" alt="Bannière d'accueil" width="600">
+</p>
+
+</div>
 {% endblock %}
