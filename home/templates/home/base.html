@@ -27,6 +27,19 @@
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <ul class="navbar-nav me-auto">
+          {% for app in apps_links %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ app.url }}">{{ app.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        <!-- Liens des flatpages -->
+        {% for page in flatpages_links %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ page.url }}">{{ page.title }}</a>
+          </li>
+        {% endfor %}
 
         <div class="collapse navbar-collapse" id="navbarToggler">
           <ul class="navbar-nav mx-auto">
