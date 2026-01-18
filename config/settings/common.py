@@ -10,6 +10,10 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import environ
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 ROOT_DIR = environ.Path(__file__) - 3  # (base_dir/config/settings/common.py - 3 = base_dir/)
 PROJ_DIR = ROOT_DIR.path('dproject')
@@ -118,24 +122,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 TIME_ZONE = 'UTC'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'fr'
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('es', 'Spanish'),
-    ('de', 'German'),
     ('fr', 'French'),
-    ('it', 'Italian'),
-    ('pt', 'Portuguese'),
-    ('zh-hans', 'Simplified Chinese'),
-    ('zh-hant', 'Traditional Chinese'),
-    ('ja', 'Japanese'),
-    ('hi', 'Hindi'),
-    ('ar', 'Arabic'),
-    ('bn', 'Bengali'),
-    ('ru', 'Russian'),
-    ('vi', 'Vietnamese'),
-    ('ko', 'Korean'),
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
@@ -162,18 +152,13 @@ TEMPLATES = [
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        'DIRS': [
-            str(PROJ_DIR.path('templates')),
+        'DIRS': [ 
+            os.path.join(BASE_DIR, 'templates'),
         ],
+        'APP_DIRS': True,
         'OPTIONS': {
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
             'debug': DEBUG,
-            # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
-            # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
-            'loaders': [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ],
             # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -184,35 +169,28 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'home.context_processors.apps_links',
-                'dproject.context_processors.flatpages_links',
+                'core.context_processors.flatpages_links',
             ],
-            #'libraries': {
-            #    'sorl_thumbnail': 'sorl.thumbnail.templatetags.thumbnail',
-            #},
+            'libraries': {
+                'sorl_thumbnail': 'sorl.thumbnail.templatetags.thumbnail',
+            },
         },
     },
 ]
 
+
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(PROJ_DIR('staticfiles'))
 FILE_UPLOAD_TEMP_DIR = str(PROJ_DIR('tmp'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = (
-    str(PROJ_DIR.path('static')),
-)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
 
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
